@@ -1,0 +1,50 @@
+<!--===========================================================================================
+  ===============================================================================================
+  ///////////////// :)  F R I E N D L Y   Q U I Z   G A M E   \\\\\\\\\\\\\\\\\\\\\
+==============================================================================================
+================================================================================================-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="Quiz Game Online" />
+    <meta name="description" content="A Friendly Game for developers." />
+    <meta name="author" content="AhsanParadise" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="Stuffs/img/icon.png" rel="icon" />
+    <title>Quiz Gestão de Tempo</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body onload="myLoader()" style="margin: 0;">
+    <div id="loader">
+      <p class="fade-in">
+        <b>Seja bem vindo ao nosso Quiz Gestão de tempo</b><br /><br />
+        Olá! Somos a CronoMaster, especialistas em gestão de tempo. Nesse quiz iremos identificar 
+        a forma de gestão que melhor se adequa a seu perfil. Serão X questões rápidas<br /><br />
+        Loading....
+      </p>
+    </div>
+    <div id="container">
+      <button id="start">Iniciar Quiz!</button>
+      <div id="quiz" style="display: none;">
+        <div id="question"></div>
+        <div id="qImg"></div>
+        <div id="choices">
+          <button class="choice" id="A" onclick="checkAnswer('A')"></button>
+          <button class="choice" id="B" onclick="checkAnswer('B')"></button>
+          <button class="choice" id="C" onclick="checkAnswer('C')"></button>
+          <button class="choice" id="D" onclick="checkAnswer('D')"></button>
+        </div>
+        <div id="timer">
+          <div id="counter"></div>
+        </div>
+        <div id="progress"></div>
+      </div>
+      <div id="scoreContainer" style="display: none;"></div>
+    </div>
+    <footer>
+      Copyright © 2024 - Todos os Direitos reservados - Editado por Adriel Henrique e José Lopes
+    </footer>
+    <script src="app.js"></script>
+  </body>
+</html>
