@@ -1,6 +1,3 @@
-//----------------------- G O O D   L U C K -------------------------------//
-
-// select all elements by id
 const start = document.getElementById("start");
 const quiz = document.getElementById("quiz");
 const question = document.getElementById("question");
@@ -13,7 +10,7 @@ const counter = document.getElementById("counter");
 const progress = document.getElementById("progress");
 const scoreDiv = document.getElementById("scoreContainer");
 
-// create questions
+// Criando as questões
 let questions = [
   {
     question: "1-Quais são os principais desafios que você enfrenta no gerenciamento de suas tarefas diárias?",
@@ -22,7 +19,7 @@ let questions = [
     choiceB: "Constantemente não consigo cumprir prazos",
     choiceC: "Me sobrecarrego de tarefas sem uma visão clara das prioridades",
     choiceD: "Não tenho dificuldade no gerenciamento de tarefas",
-    // correct: "A",
+    correct: "A",
   },
   {
     question: "Como você se sente em relação a quantidade de tarefas em sua vida atualmente?",
@@ -31,7 +28,7 @@ let questions = [
     choiceB: "Geralmente consigo lidar, mas há momentos de intensa pressão",
     choiceC: "Consigo administrar bem porque tenho poucas, por enquanto",
     choiceD: "Raramente me sinto sobrecarregado(a)",
-    // correct: "A",
+    correct: "A",
   },
   {
     question: "Já experimentou consequências negativas de priorizar errôneamente as suas tarefas?",
@@ -40,11 +37,11 @@ let questions = [
     choiceB: "Erros de priorização afetaram minha produtividade",
     choiceC: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     choiceD: "Até agora não experimentei consequências significativas",
-    // correct: "A",
+    correct: "A",
   },
 ];
 
-// Extra variables
+// Variáveis
 
 const lastQuestion = questions.length - 1;
 let runningQuestion = 0;
@@ -58,7 +55,8 @@ let b = 0;
 let c = 0;
 let d = 0;
 
-// render a question
+// Renderizar questões
+
 function renderQuestion() {
   let q = questions[runningQuestion];
 
@@ -70,13 +68,9 @@ function renderQuestion() {
   choiceD.innerHTML = q.choiceD;
 }
 
-start.addEventListener("click", startQuiz);
-
-// start quiz
+// Iniciar o quiz
 function startQuiz() {
-  var music = new Audio();
-  music.src = "Stuffs/music/Easy song.mp3";
-  music.play();
+  console.log(start);
   start.style.display = "none";
   renderQuestion();
   quiz.style.display = "block";
@@ -85,15 +79,17 @@ function startQuiz() {
   TIMER = setInterval(renderCounter, 1000); // 1000ms = 1s
 }
 
-// render progress
+// Renderizar a barra de progresso
 function renderProgress() {
   for (let qIndex = 0; qIndex <= lastQuestion; qIndex++) {
-    progress.innerHTML += "<div class='prog' id=" + qIndex + "></div>";
+    const questionId = "qIndex" + qIndex;
+    progress.innerHTML += "<div class='prog' id='" + questionId + "'></div>";
   }
 }
-// checkAnwer
 
+// Checar resposta
 function checkAnswer(selectedChoice) {
+
   switch (selectedChoice) {
     case 'A':
       a++;
@@ -108,6 +104,7 @@ function checkAnswer(selectedChoice) {
       d++;
       break;
   }
+
   questionCounter()
   if (runningQuestion < lastQuestion) {
     runningQuestion++;
@@ -121,19 +118,14 @@ function checkAnswer(selectedChoice) {
 
 // answer is correct
 function questionCounter() {
-  document.getElementById(runningQuestion).style.backgroundColor = "#0f0";
-  // var music = new Audio();
-  // music.src = "Stuffs/music/yeah.mp3";
-  // music.play();
+  const currentQuestionId = "qIndex" + runningQuestion;
+  document.getElementById(currentQuestionId).style.backgroundColor = "#0f0";
 }
 
 // score render
 function scoreRender() {
   scoreDiv.style.display = "block";
-  // var music = new Audio();
-  // music.src = "Stuffs/music/GameOver.mp3";
-  // music.play();
-
+  
   // calculate the amount of question percent answered by the user
   const scorePerCent = a;
 
@@ -152,7 +144,7 @@ function scoreRender() {
 }
 
 //////////////////////////////////////////////////////
-var myVar;
+let myVar;
 
 function myLoader() {
   myVar = setTimeout(showPage, 5000);
