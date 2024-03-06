@@ -291,7 +291,7 @@ section {
   transition: all 0.5s;
   z-index: 997;
   height: 90px;
-  background-color: var(--color-primary);
+  background-color: #2368E6;
 }
 
 .header.sticked {
@@ -813,9 +813,6 @@ section {
 # Call To Action Section
 --------------------------------------------------------------*/
 .call-to-action .container {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/cta-bg.jpg") center center;
-  background-size: cover;
-  padding: 100px 60px;
   border-radius: 15px;
   overflow: hidden;
 }
@@ -2001,6 +1998,17 @@ section {
 .hero .icon-box:hover .title a,
 .hero .icon-box:hover .icon {
   color: #fff;
+}
+
+#ampulheta  {
+  align-items: right;
+  overflow: hidden;
+}
+
+#gifAmpulheta {
+  width: 500px;
+  height: auto;
+  border-radius: 120px;
 }
 
 /*--------------------------------------------------------------
