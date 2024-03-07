@@ -950,6 +950,10 @@ section {
   color: #fff; /* Ajuste conforme necessário */
 }
 
+.carousel img {
+  filter: blur(0.5rem);
+}
+
 .call-to-action .play-btn,
 .call-to-action h3,
 .call-to-action p,
