@@ -1,21 +1,17 @@
 const start = document.getElementById("start");
 const quiz = document.getElementById("quiz");
-const question = document.getElementById("question");
-const qImg = document.getElementById("qImg");
+const questionContainer = document.getElementById("question");
 const choiceA = document.getElementById("A");
 const choiceB = document.getElementById("B");
 const choiceC = document.getElementById("C");
 const choiceD = document.getElementById("D");
-const counter = document.getElementById("counter");
 const progress = document.getElementById("progress");
-const scoreDiv = document.getElementById("scoreContainer");
 
 // Criando as questões
 let questions = [
   {
     question: "1-Quais são os principais desafios que você enfrenta no gerenciamento de suas tarefas diárias?",
-    imgSrc: "Stuffs/img/dog.gif",
-    choiceA: "Tenho dificulade em priorizar tarefas importantes",
+    choiceA: "Tenho dificuldade em priorizar tarefas importantes",
     choiceB: "Constantemente não consigo cumprir prazos",
     choiceC: "Me sobrecarrego de tarefas sem uma visão clara das prioridades",
     choiceD: "Não tenho dificuldade no gerenciamento de tarefas",
@@ -23,16 +19,14 @@ let questions = [
   },
   {
     question: "Como você se sente em relação a quantidade de tarefas em sua vida atualmente?",
-    imgSrc: "Stuffs/img/flowers.gif",
-    choiceA: "Muitas vezes me sinto sobrecarreagado(a)",
+    choiceA: "Muitas vezes me sinto sobrecarregado(a)",
     choiceB: "Geralmente consigo lidar, mas há momentos de intensa pressão",
     choiceC: "Consigo administrar bem porque tenho poucas, por enquanto",
     choiceD: "Raramente me sinto sobrecarregado(a)",
     correct: "A",
   },
   {
-    question: "Já experimentou consequências negativas de priorizar errôneamente as suas tarefas?",
-    imgSrc: "Stuffs/img/zero.gif",
+    question: "Já experimentou consequências negativas de priorizar erroneamente as suas tarefas?",
     choiceA: "Já experimentei atrasos em projetos devido a uma má escolha de prioridades",
     choiceB: "Erros de priorização afetaram minha produtividade",
     choiceC: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
@@ -42,7 +36,6 @@ let questions = [
 ];
 
 // Variáveis
-
 const lastQuestion = questions.length - 1;
 let runningQuestion = 0;
 let count = 0;
@@ -58,27 +51,27 @@ let d = 0;
 // Renderizar questões
 
 function renderQuestion() {
+
   let q = questions[runningQuestion];
+  document.getElementById("question").innerHTML = "<b>Q. " + q.question + "</b>";
 
-  question.innerHTML = "<p>" + q.question + "</p>";
-  qImg.innerHTML = "<img src=" + q.imgSrc + ">";
-  choiceA.innerHTML = q.choiceA;
-  choiceB.innerHTML = q.choiceB;
-  choiceC.innerHTML = q.choiceC;
-  choiceD.innerHTML = q.choiceD;
+  document.getElementById("A").innerText = "A. " + q.choiceA;
+  document.getElementById("B").innerText = "B. " + q.choiceB;
+  document.getElementById("C").innerText = "C. " + q.choiceC;
+  document.getElementById("D").innerText = "D. " + q.choiceD;
 }
 
-// Iniciar o quiz
 function startQuiz() {
-  console.log(start);
-  start.style.display = "none";
-  renderQuestion();
-  quiz.style.display = "block";
-  renderProgress();
-  renderCounter();
-  TIMER = setInterval(renderCounter, 1000); // 1000ms = 1s
-}
+  
+  var startButton = document.getElementById("start");
+  var optionsDiv = document.getElementById("options");
 
+  startButton.style.display = "none";
+
+  renderQuestion()
+
+  optionsDiv.style.display = "block";
+}
 // Renderizar a barra de progresso
 function renderProgress() {
   for (let qIndex = 0; qIndex <= lastQuestion; qIndex++) {
@@ -121,28 +114,6 @@ function questionCounter() {
   const currentQuestionId = "qIndex" + runningQuestion;
   document.getElementById(currentQuestionId).style.backgroundColor = "#0f0";
 }
-
-// score render
-function scoreRender() {
-  scoreDiv.style.display = "block";
-  
-  // calculate the amount of question percent answered by the user
-  const scorePerCent = a;
-
-  // choose the image based on the scorePerCent
-  let img =
-    a >= 3
-      ? "Stuffs/img/5.png"
-      : a >= 2
-      ? "Stuffs/img/4.png"
-      : a >= 1
-      ? "Stuffs/img/3.png"
-      : "Stuffs/img/1.png";
-
-  scoreDiv.innerHTML = "<img src=" + img + ">";
-  scoreDiv.innerHTML += "<p>" + scorePerCent + "</p>";
-}
-
 //////////////////////////////////////////////////////
 let myVar;
 

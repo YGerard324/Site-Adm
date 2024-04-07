@@ -2711,3 +2711,9 @@ section {
 .footer .credits a {
   color: #fff;
 }
+
+/* Carousel */
+
+.carouselImg {
+  border-radius: 60px !important;
+}
