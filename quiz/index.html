@@ -1,50 +1,260 @@
-<!--===========================================================================================
-  ===============================================================================================
-  ///////////////// :)  F R I E N D L Y   Q U I Z   G A M E   \\\\\\\\\\\\\\\\\\\\\
-==============================================================================================
-================================================================================================-->
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="keywords" content="Quiz Game Online" />
-    <meta name="description" content="A Friendly Game for developers." />
-    <meta name="author" content="AhsanParadise" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="Stuffs/img/icon.png" rel="icon" />
-    <title>Quiz Gestão de Tempo</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body onload="myLoader()" style="margin: 0;">
-    <div id="loader">
-      <p class="fade-in">
-        <b>Seja bem vindo ao nosso Quiz Gestão de tempo</b><br /><br />
-        Olá! Somos a CronoMaster, especialistas em gestão de tempo. Nesse quiz iremos identificar 
-        a forma de gestão que melhor se adequa a seu perfil. Serão X questões rápidas<br /><br />
-        Loading....
-      </p>
-    </div>
-    <div id="container">
-      <button id="start">Iniciar Quiz!</button>
-      <div id="quiz" style="display: none;">
-        <div id="question"></div>
-        <div id="qImg"></div>
-        <div id="choices">
-          <button class="choice" id="A" onclick="checkAnswer(this.id)">A</button>
-          <button class="choice" id="B" onclick="checkAnswer(this.id)">B</button>
-          <button class="choice" id="C" onclick="checkAnswer(this.id)">C</button>
-          <button class="choice" id="D" onclick="checkAnswer(this.id)">D</button>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <!-- Inclua o CSS do Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Seu próprio arquivo CSS após o Bootstrap para sobrescrever estilos se necessário -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Inclua o jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <!-- Inclua o JavaScript do Bootstrap -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <div id="quizzie">
+    <div class="quiz-step step1 current">
+        <div class="question">
+            <div class="question-wrap">
+                <h1>Quais são os principais desafios que você enfrenta no gerenciamento de suas tarefas diárias?</h1>
+            </div>
         </div>
-        <div id="timer">
-          <div id="counter"></div>
+        <!-- Alternativas para a Questão 1 -->
+        <div class="quiz-answer" data-group="0" data-answer="true">
+            <div class="answer-wrap"> 
+                <p class="answer-text">Tenho dificulade em priorizar tarefas importantes</p>
+            </div>
         </div>
-        <div id="progress"></div>
-      </div>
-      <div id="scoreContainer" style="display: none;"></div>
+        <div class="quiz-answer" data-group="0" data-answer="true">
+            <div class="answer-wrap"> 
+                <p class="answer-text">Constantemente não consigo cumprir prazos</p>
+            </div>
+        </div>
+        <div class="quiz-answer" data-group="0" data-answer="true">
+            <div class="answer-wrap"> 
+                <p class="answer-text">Me sobrecarrego de tarefas sem uma visão clara das prioridades</p>
+            </div>
+        </div>
+        <div class="quiz-answer" data-group="0" data-answer="false">
+            <div class="answer-wrap"> 
+                <p class="answer-text">Não tenho dificuldade no gerenciamento de tarefas</p>
+            </div>
+        </div>
+        
     </div>
-    <footer>
-      Copyright © 2024 - Todos os Direitos reservados - Editado por Adriel Henrique e José Lopes
-    </footer>
-    <script src="app.js"></script>
-  </body>
+    <div class="quiz-step step2">
+        <div class="question">
+            <div class="question-wrap">
+                <p>Como você se sente em relação a quantidade de tarefas em sua vida atualmente?</p>
+            </div>
+        </div>
+        <div class="quiz-answer" data-group="0" data-answer="true">
+            <div class="answer-wrap"> 
+                <p class="answer-text">Muitas vezes me sinto sobrecarreagado(a)</p>
+            </div>
+        </div>
+        <div class="quiz-answer" data-group="0" data-answer="true">
+            <div class="answer-wrap"> 
+                <p class="answer-text">Geralmente consigo lidar, mas há momentos de intensa pressão</p>
+            </div>
+        </div>
+        <div class="quiz-answer" data-group="0" data-answer="true">
+            <div class="answer-wrap"> 
+                <p class="answer-text">Consigo administrar bem porque tenho poucas, por enquanto</p>
+            </div>
+        </div>
+        <div class="quiz-answer" data-group="0" data-answer="false">
+            <div class="answer-wrap"> 
+                <p class="answer-text">Raramente me sinto sobrecarregado(a)</p>
+            </div>
+        </div>
+    </div>
+    <div class="quiz-step step3">
+        <div class="question">
+            <div class="question-wrap">
+                <p>Já experimentou consequências negativas de priorizar errôneamente as suas tarefas?</p>
+            </div>
+        </div>
+        <div class="quiz-answer" data-group="0" data-answer="true">
+            <div class="answer-wrap"> 
+                <p class="answer-text">Já experimentei atrasos e frustrações devido a uma má escolha de prioridades</p>
+            </div>
+        </div>
+        <div class="quiz-answer" data-group="0" data-answer="true">
+            <div class="answer-wrap"> 
+                <p class="answer-text">Erros de priorização afetaram minha produtividade</p>
+            </div>
+        </div>
+        <div class="quiz-answer" data-group="0" data-answer="false">
+            <div class="answer-wrap"> 
+                <p class="answer-text">Até agora não experimentei consequências significativas</p>
+            </div>
+        </div>
+    </div>
+    <div class="quiz-step step4">
+        <div class="question">
+            <div class="question-wrap">
+                <p>Você tem o hábito de procastinar? (Deixar as coisas para fazer depois)</p>
+            </div>
+        </div>
+        <div class="quiz-answer" data-group="1" data-answer="true">
+            <div class="answer-wrap"> 
+                <p class="answer-text">Sim, procrastino bastante</p>
+            </div>
+        </div>
+        <div class="quiz-answer" data-group="1" data-answer="true">
+            <div class="answer-wrap"> 
+                <p class="answer-text">Procastino, mas concluo todas as atividades, mesmo com atrasos</p>
+            </div>
+        </div>
+        <div class="quiz-answer" data-group="1" data-answer="true">
+            <div class="answer-wrap"> 
+                <p class="answer-text">Faço metade das atividades, o resto deixo para depois</p>
+            </div>
+        </div>
+        <div class="quiz-answer" data-group="1" data-answer="false">
+            <div class="answer-wrap"> 
+                <p class="answer-text">Não gosto de adiar minha atividades, faço tudo pra ficar livre logo</p>
+            </div>
+        </div>
+    </div>
+    <div class="quiz-step step5">
+        <div class="question">
+            <div class="question-wrap">
+                <p>Você mensura uma atividade mais difícil ou mais fácil antes de começar a fazer?</p>
+            </div>
+        </div>
+        <div class="quiz-answer" data-group="1" data-answer="true">
+            <div class="answer-wrap"> 
+                <p class="answer-text">Não, faço sem ordem de preferência</p>
+            </div>
+        </div>
+        <div class="quiz-answer" data-group="1" data-answer="true">
+            <div class="answer-wrap"> 
+                <p class="answer-text">As vezes</p>
+            </div>
+        </div>
+        <div class="quiz-answer" data-group="1" data-answer="false">
+            <div class="answer-wrap"> 
+                <p class="answer-text">Sim'</p>
+            </div>
+        </div>
+    </div>
+    <div class="quiz-step step6">
+        <div class="question">
+            <div class="question-wrap">
+                <p>Você prefere fazer as coisas  mais difíceis primeiro ou prefere deixar para depois?</p>
+            </div>
+        </div>
+        <div class="quiz-answer" data-group="1" data-answer="true">
+            <div class="answer-wrap"> 
+                <p class="answer-text">Prefiro fazer as coisas mais fáceis primeiro</p>
+            </div>
+        </div>
+        <div class="quiz-answer" data-group="1" data-answer="true">
+            <div class="answer-wrap"> 
+                <p class="answer-text">Tento começar pelo mais difícil, mas paro no meio para terminar depois</p>
+            </div>
+        </div>
+        <div class="quiz-answer" data-group="1" data-answer="false">
+            <div class="answer-wrap"> 
+                <p class="answer-text">Prefiro fazer as coisas mais difíceis e ficar livre o mais rápido possível</p>
+            </div>
+        </div>
+    </div>
+    <div class="quiz-step step7">
+        <div class="question">
+            <div class="question-wrap">
+                <p>Você tem dificuldade em se concentrar na execução das suas atividades diárias?</p>
+            </div>
+        </div>
+        <div class="quiz-answer" data-group="2" data-answer="true">
+            <div class="answer-wrap"> 
+                <p class="answer-text">Sim, não consigo me concentrar direito em nada</p>
+            </div>
+        </div>
+        <div class="quiz-answer" data-group="2" data-answer="true">
+            <div class="answer-wrap"> 
+                <p class="answer-text">As vezes, só quando a atividade é muito longa</p>
+            </div>
+        </div>
+        <div class="quiz-answer" data-group="2" data-answer="true">
+            <div class="answer-wrap"> 
+                <p class="answer-text">Consigo me concentrar, mas depois de alguns minutos me perco no que estou fazendo</p>
+            </div>
+        </div>
+        <div class="quiz-answer" data-group="2" data-answer="false">
+            <div class="answer-wrap"> 
+                <p class="answer-text">Não, sempre concentro e concluo minhas atividades</p>
+            </div>
+        </div>
+    </div>
+    <div class="quiz-step step8">
+        <div class="question">
+            <div class="question-wrap">
+                <p>Você costuma organizar seu tempo de trabalho e pausas durante o dia?</p>
+            </div>
+        </div>
+        <div class="quiz-answer" data-group="2" data-answer="true">
+            <div class="answer-wrap"> 
+                <p class="answer-text">Não, não vejo necessidade</p>
+            </div>
+        </div>
+        <div class="quiz-answer" data-group="2" data-answer="true">
+            <div class="answer-wrap"> 
+                <p class="answer-text">As vezes, quando me vejo fadigado</p>
+            </div>
+        </div>
+        <div class="quiz-answer" data-group="2" data-answer="true">
+            <div class="answer-wrap"> 
+                <p class="answer-text">Sim, sempre planejo momentos de produção e pausa</p>
+            </div>
+        </div>
+        <div class="quiz-answer" data-group="2" data-answer="false">
+            <div class="answer-wrap"> 
+                <p class="answer-text">Não dá tempo, tenho que fazer tudo de uma vez</p>
+            </div>
+        </div>
+    </div>
+    <div class="quiz-step step9">
+        <div class="question">
+            <div class="question-wrap">
+                <p>Você já experimentou alguma técnica de produtividade ou cronometragem para otimizar seu desempenho?</p>
+            </div>
+        </div>
+        <div class="quiz-answer" data-group="2" data-answer="true">
+            <div class="answer-wrap"> 
+                <p class="answer-text">Sim</p>
+            </div>
+        </div>
+        <div class="quiz-answer" data-group="2" data-answer="true">
+            <div class="answer-wrap"> 
+                <p class="answer-text">Se sim, não me lembro</p>
+            </div>
+        </div>
+        <div class="quiz-answer" data-group="2" data-answer="true">
+            <div class="answer-wrap"> 
+                <p class="answer-text">Não sei identificar ferramentas para isso</p>
+            </div>
+        </div>
+        <div class="quiz-answer" data-group="2" data-answer="false">
+            <div class="answer-wrap"> 
+                <p class="answer-text">Com certeza não</p>
+            </div>
+        </div>
+    </div>
+    <div id="results">
+        <div class="results-inner">
+            <!-- <p>Your result is:</p> -->
+            <h1></h1>
+            <p class="desc"></p>
+        </div>
+    </div>
+  </div>
+
+    <!-- Quiz Script -->
+    <script src="app.js"></script>    
+</body>
 </html>

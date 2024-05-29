@@ -1,163 +1,106 @@
-//----------------------- G O O D   L U C K -------------------------------//
+var quizSteps = $('#quizzie .quiz-step'),
+    missCount = [0, 0, 0], // Track misses for each group
+    resultGroups = [[], [], []]; // Track answers for each group
 
-// select all elements by id
-const start = document.getElementById("start");
-const quiz = document.getElementById("quiz");
-const question = document.getElementById("question");
-const qImg = document.getElementById("qImg");
-const choiceA = document.getElementById("A");
-const choiceB = document.getElementById("B");
-const choiceC = document.getElementById("C");
-const choiceD = document.getElementById("D");
-const counter = document.getElementById("counter");
-const progress = document.getElementById("progress");
-const scoreDiv = document.getElementById("scoreContainer");
-
-// create questions
-let questions = [
-  {
-    question: "1-Quais são os principais desafios que você enfrenta no gerenciamento de suas tarefas diárias?",
-    imgSrc: "Stuffs/img/dog.gif",
-    choiceA: "Tenho dificulade em priorizar tarefas importantes",
-    choiceB: "Constantemente não consigo cumprir prazos",
-    choiceC: "Me sobrecarrego de tarefas sem uma visão clara das prioridades",
-    choiceD: "Não tenho dificuldade no gerenciamento de tarefas",
-    // correct: "A",
-  },
-  {
-    question: "Como você se sente em relação a quantidade de tarefas em sua vida atualmente?",
-    imgSrc: "Stuffs/img/flowers.gif",
-    choiceA: "Muitas vezes me sinto sobrecarreagado(a)",
-    choiceB: "Geralmente consigo lidar, mas há momentos de intensa pressão",
-    choiceC: "Consigo administrar bem porque tenho poucas, por enquanto",
-    choiceD: "Raramente me sinto sobrecarregado(a)",
-    // correct: "A",
-  },
-  {
-    question: "Já experimentou consequências negativas de priorizar errôneamente as suas tarefas?",
-    imgSrc: "Stuffs/img/zero.gif",
-    choiceA: "Já experimentei atrasos em projetos devido a uma má escolha de prioridades",
-    choiceB: "Erros de priorização afetaram minha produtividade",
-    choiceC: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    choiceD: "Até agora não experimentei consequências significativas",
-    // correct: "A",
-  },
+// Quiz result options
+var resultOptions = [
+  { title: 'MATRIZ DE EISENHOWER', desc: '<p>Leia mais em:</p><br></br><img src="https://hexdocs.pm/qr_code/docs/qrcode.svg"/>' },
+  { title: 'EAT THAT FROG', desc: '<p>Leia mais em:</p><br></br><img src="https://hexdocs.pm/qr_code/docs/qrcode.svg"/>' },
+  { title: 'METÓDO 52/17', desc: '<p>Leia mais em:</p><br></br><img src="https://hexdocs.pm/qr_code/docs/qrcode.svg"/>' }
 ];
 
-// Extra variables
+// For each step in the quiz, add the selected answer value to the total score
+quizSteps.each(function () {
+    var currentStep = $(this),
+        ansOpts = currentStep.children('.quiz-answer');
+    // For each option per step, add a click listener
+    ansOpts.each(function () {
+        var eachOpt = $(this);
+        eachOpt[0].addEventListener('click', check, false);
+        function check() {
+            var $this = $(this),
+                answerValue = $this.attr('data-answer') === 'true',
+                groupIndex = parseInt($this.attr('data-group'));
+            
+            // Check to see if an answer was previously selected
+            if (currentStep.children('.active').length > 0) {
+                var wasActive = currentStep.children('.active'),
+                    oldAnswerValue = wasActive.attr('data-answer') === 'false',
+                    oldGroupIndex = parseInt(wasActive.attr('data-group'));
+                
+                // Handle visual active state
+                currentStep.children('.active').removeClass('active');
+                $this.addClass('active');
+                
+                // Update miss count if necessary
+                if (oldAnswerValue) {
+                    missCount[oldGroupIndex]--;
+                }
+                if (!answerValue) {
+                    missCount[groupIndex]++;
+                }
 
-const lastQuestion = questions.length - 1;
-let runningQuestion = 0;
-let count = 0;
-// const questionTime = 20; // 20s
+                // Handle the score calculation
+                calcResults();
+            } else {
+                // Handle visual active state
+                $this.addClass('active');
 
-let TIMER;
-let score = 0;
-let a = 0;
-let b = 0;
-let c = 0;
-let d = 0;
+                // Update miss count if necessary
+                if (!answerValue) {
+                    missCount[groupIndex]++;
+                }
 
-// render a question
-function renderQuestion() {
-  let q = questions[runningQuestion];
+                // Handle current step
+                updateStep(currentStep);
+                calcResults();
+            }
+        }
+    });
+});
 
-  question.innerHTML = "<p>" + q.question + "</p>";
-  qImg.innerHTML = "<img src=" + q.imgSrc + ">";
-  choiceA.innerHTML = q.choiceA;
-  choiceB.innerHTML = q.choiceB;
-  choiceC.innerHTML = q.choiceC;
-  choiceD.innerHTML = q.choiceD;
+// Show current step/hide other steps
+function updateStep(currentStep) {
+    if (currentStep.hasClass('current')) {
+        currentStep.removeClass('current');
+        currentStep.next().addClass('current');
+    }
 }
 
-start.addEventListener("click", startQuiz);
+// Display scoring results
+function calcResults() {
+    // Only update the results div if all questions have been answered
+    if (quizSteps.find('.active').length == quizSteps.length) {
+        var resultsTitle = $('#results h1'),
+            resultsDesc = $('#results .desc');
+            resultsImg = ('<p>Leia mais em:</p><br></br><img src="https://i.imgur.com/mnz0yLz.png"/>');
+        
+        var results = [];
 
-// start quiz
-function startQuiz() {
-  var music = new Audio();
-  music.src = "Stuffs/music/Easy song.mp3";
-  music.play();
-  start.style.display = "none";
-  renderQuestion();
-  quiz.style.display = "block";
-  renderProgress();
-  renderCounter();
-  TIMER = setInterval(renderCounter, 1000); // 1000ms = 1s
-}
+        // Determine final result based on miss counts
+        for (var i = 0; i < missCount.length; i++) {
+            if (missCount[i] < 2) {
+                results.push(resultOptions[i]);
+            }
+        }
 
-// render progress
-function renderProgress() {
-  for (let qIndex = 0; qIndex <= lastQuestion; qIndex++) {
-    progress.innerHTML += "<div class='prog' id=" + qIndex + "></div>";
-  }
-}
-// checkAnwer
+        if (results.length > 0) {
+            var resultTitles = results.map(function(result) {
+                return result.title;
+            }).join(", ");
 
-function checkAnswer(selectedChoice) {
-  switch (selectedChoice) {
-    case 'A':
-      a++;
-      break;
-    case 'B':
-      b++;
-      break;
-    case 'C':
-      c++;
-      break;
-    case 'D':
-      d++;
-      break;
-  }
-  questionCounter()
-  if (runningQuestion < lastQuestion) {
-    runningQuestion++;
-    renderQuestion();
-  } else {
-    // Fim do quiz, mostra a pontuação
-    clearInterval(TIMER);
-    scoreRender();
-  }
-}
+            var resultDescriptions = results.map(function(result) {
+                return result.desc;
+            }).join("");
 
-// answer is correct
-function questionCounter() {
-  document.getElementById(runningQuestion).style.backgroundColor = "#0f0";
-  // var music = new Audio();
-  // music.src = "Stuffs/music/yeah.mp3";
-  // music.play();
-}
+            resultsTitle.text("Métodos que se adequam a você: " + resultTitles);
+            // resultsDesc.html(resultDescriptions);
 
-// score render
-function scoreRender() {
-  scoreDiv.style.display = "block";
-  // var music = new Audio();
-  // music.src = "Stuffs/music/GameOver.mp3";
-  // music.play();
+            resultsTitle.append(resultsImg);
 
-  // calculate the amount of question percent answered by the user
-  const scorePerCent = a;
-
-  // choose the image based on the scorePerCent
-  let img =
-    a >= 3
-      ? "Stuffs/img/5.png"
-      : a >= 2
-      ? "Stuffs/img/4.png"
-      : a >= 1
-      ? "Stuffs/img/3.png"
-      : "Stuffs/img/1.png";
-
-  scoreDiv.innerHTML = "<img src=" + img + ">";
-  scoreDiv.innerHTML += "<p>" + scorePerCent + "</p>";
-}
-
-//////////////////////////////////////////////////////
-var myVar;
-
-function myLoader() {
-  myVar = setTimeout(showPage, 5000);
-}
-
-function showPage() {
-  document.getElementById("loader").style.display = "none";
+        } else {
+            resultsTitle.text("NADA");
+            resultsDesc.text("NENHUM DOS MÉTODOS APRESENTADOS VAI FUNCIONAR");
+        }
+    }
 }

@@ -291,7 +291,7 @@ section {
   transition: all 0.5s;
   z-index: 997;
   height: 90px;
-  background-color: var(--color-primary);
+  background-color: #2368E6;
 }
 
 .header.sticked {
@@ -813,9 +813,6 @@ section {
 # Call To Action Section
 --------------------------------------------------------------*/
 .call-to-action .container {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/cta-bg.jpg") center center;
-  background-size: cover;
-  padding: 100px 60px;
   border-radius: 15px;
   overflow: hidden;
 }
@@ -927,6 +924,42 @@ section {
     transform: scale(1, 1);
     opacity: 0;
   }
+}
+
+/* Carousel */
+.call-to-action .carousel-inner {
+  position: relative;
+}
+
+.call-to-action .carousel-item {
+  position: relative;
+  text-align: center;
+}
+
+.call-to-action .carousel-item img {
+  width: 100%;
+  height: auto;
+}
+
+.carousel-caption {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #fff; /* Ajuste conforme necessário */
+}
+
+.carousel img {
+  filter: blur(0.5rem);
+}
+
+.call-to-action .play-btn,
+.call-to-action h3,
+.call-to-action p,
+.call-to-action .cta-btn {
+  position: relative;
+  z-index: 1;
 }
 
 /*--------------------------------------------------------------
@@ -2003,6 +2036,17 @@ section {
   color: #fff;
 }
 
+#ampulheta  {
+  align-items: right;
+  overflow: hidden;
+}
+
+#gifAmpulheta {
+  width: 500px;
+  height: auto;
+  border-radius: 120px;
+}
+
 /*--------------------------------------------------------------
 # Blog
 --------------------------------------------------------------*/
@@ -2666,4 +2710,10 @@ section {
 
 .footer .credits a {
   color: #fff;
+}
+
+/* Carousel */
+
+.carouselImg {
+  border-radius: 60px !important;
 }
