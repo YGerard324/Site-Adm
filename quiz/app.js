@@ -73,7 +73,7 @@ function calcResults() {
     if (quizSteps.find('.active').length == quizSteps.length) {
         var resultsTitle = $('#results h1'),
             resultsDesc = $('#results .desc');
-            resultsImg = ('<div><p>Acesse pelo Qrcode:</p><br></br><img src="https://i.imgur.com/mnz0yLz.png" style="max-width: 100px; max-height: 100px; width: auto; height: auto;"/></div><div><a href="https://drive.google.com/file/d/1tmEVedL3bXoUZLf1tz0_YjAfCaplptwt/view"><h2>ou clique aqui</h2></a></div>');
+            resultsImg = ('<div><p>Acesse pelo Qrcode:</p><br></br><img src="https://i.imgur.com/mnz0yLz.png" style="max-width: 300px; max-height: 300px; width: auto; height: auto;"/></div><div><a href="https://drive.google.com/file/d/1tmEVedL3bXoUZLf1tz0_YjAfCaplptwt/view"><h2>ou clique aqui</h2></a></div>');
 
         
         var results = [];
